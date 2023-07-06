@@ -1,1 +1,1 @@
-export { default } from './AddBroker.container';
+export * from './AddBroker.container';
