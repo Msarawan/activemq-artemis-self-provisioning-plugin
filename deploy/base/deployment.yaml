@@ -24,9 +24,9 @@ spec:
           ports:
             - containerPort: 9443
               protocol: TCP
-          env:
-            - name: TLS_ENABLED
-              value: 'true'
+          args: [ "-g", "daemon off;"]
+          command:
+          - nginx
           imagePullPolicy: Always
           securityContext:
             allowPrivilegeEscalation: false
@@ -45,6 +45,10 @@ spec:
         - name: plugin-serving-cert
           secret:
             secretName: plugin-serving-cert
+            defaultMode: 420
+        - name: nginx-conf
+          configMap:
+            name: nginx-conf
             defaultMode: 420
       restartPolicy: Always
       dnsPolicy: ClusterFirst
